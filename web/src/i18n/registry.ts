@@ -231,5 +231,7 @@ export const CATALOGS: { [L in Exclude<Locale, typeof SOURCE_LOCALE>]: Partial<R
     gaps: () => import('./en/gaps'),
     portalfiles: () => import('./en/portalfiles'),
   },
-  es: {},
+  es: {
+  login: () => import('./es/login'),
+},
 };
