@@ -233,5 +233,6 @@ export const CATALOGS: { [L in Exclude<Locale, typeof SOURCE_LOCALE>]: Partial<R
   },
   es: {
   login: () => import('./es/login'),
+  shell: () => import('./es/shell'),
 },
 };
