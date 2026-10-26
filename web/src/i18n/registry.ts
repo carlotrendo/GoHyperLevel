@@ -23,6 +23,7 @@ export type Catalog = Record<string, string | PluralForms>;
 export const LOCALES = {
   de: { name: 'Deutsch', intl: 'de-DE' },
   en: { name: 'English', intl: 'en-GB' },
+  es: { name: 'Español', intl: 'es-ES' },
 } as const;
 export type Locale = keyof typeof LOCALES;
 export const SOURCE_LOCALE = 'de' satisfies Locale;
@@ -230,4 +231,5 @@ export const CATALOGS: { [L in Exclude<Locale, typeof SOURCE_LOCALE>]: Partial<R
     gaps: () => import('./en/gaps'),
     portalfiles: () => import('./en/portalfiles'),
   },
+  es: {},
 };
