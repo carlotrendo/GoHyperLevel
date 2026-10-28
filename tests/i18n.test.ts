@@ -37,7 +37,7 @@ describe('the repository', () => {
   it('the registry the check reads is the one the app loads (languages, namespaces, catalog chunks)', () => {
     const reg = readRegistry();
     expect(reg.source).toBe('de');
-    expect(reg.locales).toEqual(['de', 'en']);
+    expect(reg.locales).toEqual(['de', 'en', 'es']);
     expect(Object.keys(reg.namespaces).sort()).toEqual(Object.keys(NAMESPACES).sort());
     expect(Object.keys(reg.catalogs.en).sort()).toEqual(Object.keys(CATALOGS.en).sort());
     // phase 1: shell, sign-in and the main areas are declared complete
@@ -102,7 +102,7 @@ describe('the language layer', () => {
   it('picks the first supported language of a list, German when none matches', () => {
     expect(pickLocale(['en-US', 'de'])).toBe('en');
     expect(pickLocale(['fr-FR', 'de-AT'])).toBe('de');
-    expect(pickLocale(['fr', 'es'])).toBe('de');
+    expect(pickLocale(['fr', 'es'])).toBe('es');
     expect(pickLocale(undefined)).toBe('de');
   });
 });
@@ -122,7 +122,7 @@ describe('the language preference on the server', () => {
     expect(serverPick('en;q=0, de')).toBe('de');
     expect(serverPick(undefined)).toBe('de');
     const r = await (await t.api.raw('/api/language', { headers: { 'accept-language': 'en-GB,en;q=0.9' } })).json();
-    expect(r).toEqual({ lang: 'en', locales: ['de', 'en'] });
+    expect(r).toEqual({ lang: 'en', locales: ['de', 'en', 'es'] });
     const de = await (await t.api.raw('/api/language')).json();
     expect(de.lang).toBe('de');
   });
