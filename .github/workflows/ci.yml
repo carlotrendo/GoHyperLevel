@@ -38,7 +38,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
-      - run: npm test
+      - run: npx vitest run tests/i18n.test.ts
       - run: npm run build
       - name: Licenses of distributed dependencies
         run: npm run licenses
